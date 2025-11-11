@@ -1,0 +1,73 @@
+/* ===== Estilos generales ===== */
+body {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+  font-family: Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+h1, h2, h3 {
+  color: #c7b8ff;
+  text-align: center;
+}
+a {
+  color: #c7b8ff;
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+header {
+  background-color: #2a2a2a;
+  padding: 10px;
+  text-align: center;
+}
+nav a {
+  margin: 0 8px;
+  color: #f1f1f1;
+}
+.contenedor {
+  width: 90%;
+  max-width: 400px;
+  background-color: #2a2a2a;
+  padding: 20px;
+  margin: 80px auto;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+}
+form { display: flex; flex-direction: column; }
+label { margin: 8px 0 3px 0; font-size: 14px; }
+input, textarea {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #3a3a3a;
+  color: #f1f1f1;
+}
+input:focus, textarea:focus { outline: 1px solid #5c4b8a; }
+.boton {
+  background-color: #5c4b8a;
+  color: #fff;
+  padding: 10px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.boton:hover { background-color: #7b63c3; }
+.texto-pequeño {
+  text-align: center;
+  font-size: 13px;
+  margin-top: 15px;
+}
+.tarjeta-anuncio, .tarjeta-cancion, .tarjeta-playlist, .tarjeta-opinion {
+  background-color: #2a2a2a;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 10px auto;
+  width: 90%;
+  box-shadow: 0 0 4px rgba(0,0,0,0.3);
+}
+.foto-perfil {
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 10px;
+}
