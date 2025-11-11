@@ -1,13 +1,17 @@
+import random
 from django.db import models
 
-class Anuncio(models.Model): # <-- ¡ARREGLADO!
-    # --- Campos traducidos para consistencia ---
-    titulo = models.CharField(max_length=200, verbose_name="Título")
-    description = models.TextField(blank=True, null=True, verbose_name="Descripción")
-    image = models.ImageField(upload_to='ads/', verbose_name="Imagen")
-    link = models.URLField(max_length=500, verbose_name="Enlace")
-    is_active = models.BooleanField(default=True, verbose_name="Está Activo")
-    fecha_creacion = models.DateTimeField(auto_now_add=True)
+def generar_id_aleatorio():
+    return random.randint(100000000, 999999999)
 
-    def __str__(self):
-        return self.titulo
+class Anuncio(models.Model):
+
+    id = models.IntegerField(default=generar_id_aleatorio, help_text="ID único del anuncio")
+    titulo = models.CharField(max_length=47, help_text="Título del anuncio")
+    descripcion = models.CharField(max_length=47, help_text="Descripción detallada")
+    activo = models.BooleanField(default=True, help_text="Indica si el anuncio está publicado (True) o no publicado (False)")
+    imagen = models.ImageField(upload_to='anuncios/', blank=True, null=True, help_text="Imagen asociada al anuncio")
+
+  
+
+        
