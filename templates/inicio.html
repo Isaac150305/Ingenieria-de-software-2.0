@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Musicboxd - Inicio</title>
-  <link rel="stylesheet" href="style.css">
+  
+  <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
   <header>
@@ -16,7 +17,8 @@
       <a href="playlists.html">Playlists</a>
       <a href="opiniones.html">Opiniones</a>
       <a href="anuncios.html">Anuncios</a>
-      <a href="index.html">Cerrar sesión</a>
+      <a href="agregar-cancion.html"><b>+ Agregar Canción</b></a>
+      <a href="index.html" id="logout-boton">Cerrar sesión</a>
     </nav>
   </header>
   <main>
@@ -24,17 +26,22 @@
       <h2>Bienvenido a Musicboxd</h2>
       <p>Aquí puedes ver anuncios, explorar canciones, crear playlists y compartir opiniones.</p>
     </section>
+    
     <section class="anuncios">
       <h3>Anuncios recientes</h3>
-      <div class="tarjeta-anuncio">
-        <h4>Nueva función: playlists personalizadas</h4>
-        <p>Ahora puedes crear tus propias listas de canciones.</p>
-      </div>
-      <div class="tarjeta-anuncio">
-        <h4>Concurso de reseñas</h4>
-        <p>Comparte tus opiniones sobre tus canciones favoritas.</p>
-      </div>
+      
+      <div class="anuncios-list">
+        </div>
+      
     </section>
   </main>
+  
+  <script src="../static/inicio.js"></script>
+  
+  <script>
+    document.querySelector('#logout-boton')?.addEventListener('click', () => {
+      localStorage.removeItem('authToken');
+    });
+  </script>
 </body>
 </html>

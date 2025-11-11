@@ -2,9 +2,9 @@ from django.urls import path
 from .views import CreateUserAPIView, UserProfileAPIView
 
 urlpatterns = [
-    # Ruta para el registro: se verá como 'api/usuarios/register/'
+    # Ruta: /api/register/
     path('register/', CreateUserAPIView.as_view(), name='register'),
-    
-    # Ruta para ver el perfil: se verá como 'api/usuarios/profile/'
+
+    # Ruta: /api/profile/
     path('profile/', UserProfileAPIView.as_view(), name='profile'),
 ]

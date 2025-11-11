@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Musicboxd - Perfil</title>
-  <link rel="stylesheet" href="style.css">
+  
+  <link rel="stylesheet" href="../static/css/style.css">
+  
 </head>
-
 <body>
   <header>
     <h1>Musicboxd</h1>
@@ -18,6 +18,7 @@
       <a href="playlists.html">Playlists</a>
       <a href="opiniones.html">Opiniones</a>
       <a href="anuncios.html">Anuncios</a>
+      <a href="agregar-cancion.html"><b>+ Agregar Canción</b></a>
     </nav>
   </header>
   <main>
@@ -25,14 +26,19 @@
       <section class="perfil">
         <h2>Mi Perfil</h2>
         <img src="https://via.placeholder.com/120" alt="Foto de perfil" class="foto-perfil">
+        
         <div style="text-align: center;">
-          <p><strong>Nombre:</strong> Juan Pérez</p>
-          <p><strong>Usuario:</strong> juanp</p>
-          <p><strong>Correo:</strong> juanp@musicboxd.com</p>
+          <p><strong>Nombre:</strong> <span class="nombre">Cargando...</span></p>
+          <p><strong>Usuario:</strong> <span class="usuario">Cargando...</span></p>
+          <p><strong>Correo:</strong> <span class="correo">Cargando...</span></p>
         </div>
+        
+        <button class="boton botonEditar">Editar Perfil (Próximamente)</button>
+        
       </section>
     </div>
   </main>
+  
+  <script src="../static/perfil.js"></script>
 </body>
-
 </html>
