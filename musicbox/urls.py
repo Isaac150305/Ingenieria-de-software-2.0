@@ -1,22 +1,30 @@
-"""
-URL configuration for musicbox project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from rest_framework.authtoken import views as authtoken_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # --- NUESTRAS APIS ---
+    
+    # 1. Endpoint de LOGIN (de DRF)
+    #    POST a /api/usuarios/login/
+    path('api/usuarios/login/', authtoken_views.obtain_auth_token, name='api_token_auth'),
+    
+    # 2. Endpoints de REGISTRO y PERFIL (de 'usuarios/urls.py')
+    #    POST a /api/usuarios/register/
+    #    GET a /api/usuarios/profile/
+    path('api/usuarios/', include('usuarios.urls')),
+    
+    # APIs de Musica
+    path('api/musica/', include('musica.urls')),
+
+    # Api resenas
+    path('api/resenas/', include('resenas.urls')),
+    
+    # Api playlist
+    path('api/playlist/', include('playlist.urls')),
+    
+    # Api anuncios
+    path('api/anuncios/', include('anuncios.urls')),
 ]
