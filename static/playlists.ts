@@ -1,36 +1,17 @@
-// ==========================================================
-// static/playlists.ts (¡El Código Corregido!)
-// ==========================================================
-
-// 1. Define la IP y puerto de tu backend
 export const API_BASE_URL = 'http://127.0.0.1:8000';
 
-// ==========================================================
-// CLASE 'Playlist' (Arregla el Error 3)
-// (Ahora coincide con nuestro 'playlist/serializers.py')
-// ==========================================================
 class Playlist {
     constructor(
         public id: number,
-        public nombre: string, // <-- Corregido
+        public nombre: string,
         public creador: string,
-        public canciones: any[] // <-- Corregido (recibimos la lista, no un contador)
+        public canciones: any[]
     ) { }
 }
 
-// ==========================================================
-// CLASE DE SERVICIO DE PLAYLISTS
-// (Arregla Errores 1 y 2)
-// ==========================================================
 class PlaylistService {
-    
-    // URL Corregida (apunta a la que creamos en 'playlist/urls.py')
     private apiUrl = `${API_BASE_URL}/api/playlists/`;
 
-    /**
-     * Busca las playlists del usuario logueado.
-     * ¡Debe enviar el Token!
-     */
     async fetchPlaylists(): Promise<Playlist[]> {
         const token = localStorage.getItem('authToken');
         if (!token) {
@@ -40,7 +21,6 @@ class PlaylistService {
         }
 
         try {
-            // Añadimos el header de Autorización
             const res = await fetch(this.apiUrl, {
                 headers: {
                     'Authorization': `Token ${token}`
@@ -57,10 +37,6 @@ class PlaylistService {
         }
     }
 
-    /**
-     * Crea una nueva playlist.
-     * ¡Debe enviar el Token!
-     */
     async createPlaylist(name: string): Promise<void> {
         const token = localStorage.getItem('authToken');
         if (!token) {
@@ -71,8 +47,7 @@ class PlaylistService {
         try {
             const res = await fetch(this.apiUrl, {
                 method: "POST",
-                // El backend espera 'nombre', no 'name'
-                body: JSON.stringify({ nombre: name }), // <-- Corregido
+                body: JSON.stringify({ nombre: name }),
                 headers: { 
                     "Content-Type": "application/json",
                     'Authorization': `Token ${token}`
@@ -91,16 +66,10 @@ class PlaylistService {
     }
 }
 
-// ==========================================================
-// MANEJADOR DE LA PÁGINA
-// (Actualizado para usar los nombres de campo correctos)
-// ==========================================================
 class PlaylistPage {
     private service = new PlaylistService();
 
     async init() {
-        // ¡OJO! Tu HTML 'playlists.html' no tiene un botón con clase '.botonCrear'
-        // Asegúrate de que tu botón 'Crear nueva playlist' tenga ese ID o clase
         document.querySelector(".botonCrear")?.addEventListener("click", async () => {
             const name = prompt("Nombre de la nueva playlist:");
             if (name) await this.service.createPlaylist(name);
@@ -111,17 +80,14 @@ class PlaylistPage {
     }
 
     async renderPlaylists() {
-        // ¡OJO! Tu HTML 'playlists.html' no tiene un '.playlists-list'
-        // Debes crear un <div> con esa clase
         const container = document.querySelector(".playlists-list");
         if (!container) return;
 
         const playlists = await this.service.fetchPlaylists();
         
-        container.innerHTML = ''; // Limpia el contenedor
+        container.innerHTML = '';
         
         playlists.forEach(p => {
-            // Usamos 'p.nombre' y 'p.canciones.length'
             container.innerHTML += `
                 <div class="tarjeta-playlist">
                     <h3>${p.nombre}</h3>

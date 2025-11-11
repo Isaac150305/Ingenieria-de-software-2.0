@@ -4,8 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Musicboxd - Canciones</title>
-  <link rel="stylesheet" href="../static/css/style.css"> </head>
+  <title>Musicboxd - Playlists</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
 
 <body>
   <header>
@@ -17,21 +18,17 @@
       <a href="playlists.html">Playlists</a>
       <a href="opiniones.html">Opiniones</a>
       <a href="anuncios.html">Anuncios</a>
-      <a href="agregar-cancion.html"><b>+ Agregar Canción</b></a>
     </nav>
   </header>
   <main>
     <section>
-      <h2>Catálogo de Canciones</h2>
-      
-      <input type="text" placeholder="Buscar canción..." style="width:100%; margin-bottom:15px;">
-      
-      <div class="catalogo-canciones">
-        </div>
-      
+      <h2>Mis Playlists</h2>
+      <div id="contenedor-playlists">
+      </div>
+      <button class="boton" id="boton-crear-playlist" style="display: block; margin: 25px auto 0 auto;">Crear nueva playlist</button>
     </section>
   </main>
-  
-  <script src="../static/canciones.js"></script>
+  <script src="/static/playlists.ts"></script>
 </body>
+
 </html>

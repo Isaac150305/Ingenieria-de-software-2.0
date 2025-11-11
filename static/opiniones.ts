@@ -1,27 +1,18 @@
-
-// 1. Define la IP y puerto de tu backend
 export const API_BASE_URL = 'http://127.0.0.1:8000';
 
-// 2. Clase 'Opinion' (Resena) que coincide con el backend
-// (backend 'resenas/models.py')
 class Opinion {
     constructor(
         public id: number,
-        public usuario: string, // <-- Corregido (es 'usuario', no 'user')
-        public comentario: string, // <-- Corregido (es 'comentario', no 'content')
-        public calificacion: number, // <-- Añadido
-        public cancion: number // <-- Añadido
+        public usuario: string,
+        public comentario: string,
+        public calificacion: number,
+        public cancion: number
     ) { }
 }
 
 class OpinionService {
-    // 3. URL Corregida (apunta a la que creamos en 'resenas/urls.py')
-    private apiUrl = `${API_BASE_URL}/api/opiniones/`; // (Esta fue la que corregimos)
+    private apiUrl = `${API_BASE_URL}/api/opiniones/`;
 
-    /**
-     * Busca TODAS las opiniones.
-     * ¡Debe enviar el Token!
-     */
     async fetchOpinions(): Promise<Opinion[]> {
         const token = localStorage.getItem('authToken');
         if (!token) {
@@ -47,10 +38,6 @@ class OpinionService {
         }
     }
 
-    /**
-     * Publica una nueva opinión.
-     * ¡Debe enviar el Token y TODOS los datos!
-     */
     async publishOpinion(comentario: string, calificacion: number, cancion_id: number): Promise<boolean> {
         const token = localStorage.getItem('authToken');
         if (!token) {
@@ -61,7 +48,6 @@ class OpinionService {
         try {
             const res = await fetch(this.apiUrl, {
                 method: "POST",
-                // 4. Body Corregido (coincide con 'resenas/models.py')
                 body: JSON.stringify({ 
                     comentario: comentario,
                     calificacion: calificacion,
@@ -88,23 +74,17 @@ class OpinionService {
     }
 }
 
-// ==========================================================
-// MANEJADOR DE LA PÁGINA
-// (Actualizado para enviar TODOS los datos)
-// ==========================================================
 class OpinionPage {
     private service = new OpinionService();
 
     async init() {
-        const publishBtn = document.querySelector(".botonPublicar"); // Asumo que este botón existe
+        const publishBtn = document.querySelector(".botonPublicar");
         
         publishBtn?.addEventListener("click", async () => {
             const textarea = document.querySelector<HTMLTextAreaElement>("textarea");
             
-            // --- ¡Simulación! Debes añadir estos inputs en tu HTML ---
             const calificacionInput = prompt("Calificación (1-5):");
             const cancionIdInput = prompt("ID de la Canción a reseñar:");
-            // --- Fin Simulación ---
 
             if (textarea?.value && calificacionInput && cancionIdInput) {
                 const calificacion = parseInt(calificacionInput);
@@ -119,14 +99,13 @@ class OpinionPage {
     }
 
     async renderOpinions() {
-        const container = document.querySelector(".opiniones-list"); // Asumo que este div existe
+        const container = document.querySelector(".opiniones-list");
         if (!container) return;
         
         const opinions = await this.service.fetchOpinions();
         container.innerHTML = '';
         
         opinions.forEach(o =>
-            // Usamos los campos correctos: 'usuario' y 'comentario'
             container.innerHTML += `
                 <div class="tarjeta-opinion">
                     <p><strong>@${o.usuario}</strong> (${o.calificacion} estrellas)</p>

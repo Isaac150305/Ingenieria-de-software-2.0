@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Musicboxd - Canciones</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+  <header>
+    <h1>Musicboxd</h1>
+    <nav>
+      <a href="inicio.html">Inicio</a>
+      <a href="perfil.html">Perfil</a>
+      <a href="canciones.html">Canciones</a>
+      <a href="playlists.html">Playlists</a>
+      <a href="opiniones.html">Opiniones</a>
+      <a href="anuncios.html">Anuncios</a>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <h2>Catálogo de Canciones</h2>
+      <input type="text" placeholder="Buscar canción..." style="width:100%; margin-bottom:15px;">
+      <button class="boton" id="boton-mostrar-formulario" style="display: block; margin: 15px auto 30px auto;">
+                Añadir Canción al Catálogo
+            </button>
+
+            <form id="formulario-agregar-cancion" style="display: none; padding-bottom: 20px;">
+                <h3 style="margin-top: 0;">Añadir Nueva Canción</h3>
+                <label for="titulo-cancion">Título de la canción:</label>
+                <input type="text" id="titulo-cancion" required>
+
+                <label for="artista-cancion">Artista/Banda:</label>
+                <input type="text" id="artista-cancion" required>
+                
+                <label for="genero-cancion">Género:</label>
+                <input type="text" id="genero-cancion">
+
+                <button type="submit" class="boton">Guardar y Añadir al Catálogo</button>
+            </form>
+            <hr> <div id="contenedor-catalogo" style="margin-top: 20px;">
+                </div>
+      </section>
+    </div>
+    </main>
+    <script src="/static/canciones.ts"></script>
+</body>
+
+
+</html>

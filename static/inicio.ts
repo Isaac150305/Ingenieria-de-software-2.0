@@ -1,25 +1,18 @@
-
-
 export const API_BASE_URL = 'http://127.0.0.1:8000';
 
 class Announcement {
     constructor(
         public id: number,
-        public titulo: string, // <-- Corregido
-        public description: string, // <-- Corregido
+        public titulo: string,
+        public description: string,
         public image: string,
         public link: string
     ) { }
 }
 
 class AnnouncementService {
-    // 3. URL Corregida (apunta a la que creamos en 'anuncios/urls.py')
     private apiUrl = `${API_BASE_URL}/api/anuncios/`;
 
-    /**
-     * Busca todos los anuncios activos.
-     * (¡Este no necesita Token!)
-     */
     async fetchAnnouncements(): Promise<Announcement[]> {
         try {
             const res = await fetch(this.apiUrl);
@@ -35,10 +28,6 @@ class AnnouncementService {
     }
 }
 
-// ==========================================================
-// MANEJADOR DE LA PÁGINA
-// (Actualizado para usar los nombres de campo correctos)
-// ==========================================================
 class HomePage {
     private service = new AnnouncementService();
 
@@ -47,7 +36,6 @@ class HomePage {
     }
 
     async renderAnnouncements() {
-        // Tu 'inicio.html' no tiene '.anuncios-list', ¡añádelo!
         const container = document.querySelector(".anuncios-list"); 
         if (!container) return;
 
@@ -55,7 +43,6 @@ class HomePage {
         container.innerHTML = '';
         
         anuncios.forEach(a => {
-            // Usamos 'a.titulo' y 'a.description'
             container.innerHTML += `
                 <div class="tarjeta-anuncio">
                     <a href="${a.link}" target="_blank">
