@@ -1,7 +1,10 @@
-from django.shortcuts import render
+import re
+from django.shortcuts import redirect, render
 
 from rest_framework import generics, permissions
 from django.contrib.auth.models import User
+
+from usuarios.models import Usuarios
 from .serializers import UserSerializer, UserCreateSerializer
 
 # ------------------------------------------------------------------
@@ -52,3 +55,42 @@ class UserProfileAPIView(generics.RetrieveAPIView):
         # 'self.request.user' es el objeto User que DRF
         # identifica gracias al Token enviado en la petición.
         return self.request.user
+    
+    def validacionNombre(request):
+        if request.method == 'POST':
+            nombre = request.POST.get('nombre')
+            if not re.match(r'^[a-zA-Z0-9]+$', nombre):  # Validación con regex
+                # Maneja el error, e.g., agrega a un contexto de error
+                return render(request, 'template.html', {'error': 'Código inválido.'})
+            # Guarda si es válido
+            Usuarios.objects.create(nombre=nombre)
+            return redirect('success')
+        return render(request, 'template.html')
+
+
+    
+    def validacionNickname(request):
+        if request.method == 'POST':
+            nickname = request.POST.get('nickname')
+            if not re.match(r'^[a-zA-Z0-9]+$', nickname):  # Validación con regex
+                # Maneja el error, e.g., agrega a un contexto de error
+                return render(request, 'template.html', {'error': 'Código inválido.'})
+            # Guarda si es válido
+            Usuarios.objects.create(nickname=nickname)
+            return redirect('success')
+        return render(request, 'template.html')
+
+
+    def validacionCorreo(request):
+        if request.method == 'POST':
+            correo = request.POST.get('correo')
+            if not re.match(r'^[\w\.-]+@[\w\.-]+\.\w+$', correo):  # Validación con regex
+                # Maneja el error, e.g., agrega a un contexto de error
+                return render(request, 'template.html', {'error': 'Correo inválido.'})
+            # Guarda si es válido
+            Usuarios.objects.create(correo=correo)
+            return redirect('success')
+        return render(request, 'template.html')
+
+
+
